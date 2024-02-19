@@ -4,9 +4,8 @@ use winit::{
     window::WindowBuilder,
 };
 
-
 fn main() {
-        let event_loop = EventLoop::new().unwrap();
+    let event_loop = EventLoop::new().unwrap();
 
     let window = WindowBuilder::new()
         .with_title("A fantastic window!")
@@ -14,10 +13,13 @@ fn main() {
         .build(&event_loop)
         .unwrap();
 
-        window.set_cursor_grab(winit::window::CursorGrabMode::Confined).unwrap();
+    window
+        .set_cursor_grab(winit::window::CursorGrabMode::Confined)
+        .unwrap();
+    window.set_cursor_visible(false);
 
-    event_loop.run(move |event, elwt| {
-        match event {
+    event_loop
+        .run(move |event, elwt| match event {
             Event::WindowEvent { event, window_id } if window_id == window.id() => match event {
                 WindowEvent::CloseRequested => elwt.exit(),
                 WindowEvent::RedrawRequested => {
@@ -30,6 +32,6 @@ fn main() {
             }
 
             _ => (),
-        }
-    }).unwrap();
+        })
+        .unwrap();
 }

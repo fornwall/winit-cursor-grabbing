@@ -16,6 +16,7 @@ fn main() {
     window
         .set_cursor_grab(winit::window::CursorGrabMode::Confined)
         .unwrap();
+    window.set_cursor_visible(false);
 
     event_loop.run(move |event, _elwt, control_flow| match event {
         Event::RedrawRequested(..) => {
